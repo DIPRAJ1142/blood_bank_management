@@ -1,0 +1,274 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    
+	{% comment %} <title>
+		How to Design Image
+		Slider using jQuery ?
+	</title> {% endcomment %}
+	
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1">
+	
+	<link rel="stylesheet" href=
+"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<style>
+		img {
+			width: 100%;
+		}
+		.height {
+			height: 10px;
+		}
+		
+		/* Image-container design */
+		.image-container {
+			max-width: 1900px;
+			position: relative;
+			margin: auto;
+		}
+		
+		.next {
+			right: 0;
+		}
+		
+		/* Next and previous icon design */
+		.previous,
+		.next {
+			cursor: pointer;
+			position: absolute;
+			top: 50%;
+			padding: 10px;
+			margin-top: -25px;
+		}
+		
+		/* caption decorate */
+		.captionText {
+			color: #000000;
+			font-size: 14px;
+			position: absolute;
+			padding: 12px 12px;
+			bottom: 8px;
+			width: 100%;
+			text-align: center;
+		}
+		
+		/* Slider image number */
+		.slideNumber {
+			background-color: #5574C5;
+			color: white;
+			border-radius: 25px;
+			right: 0;
+			opacity: .5;
+			margin: 5px;
+			width: 30px;
+			height: 30px;
+			text-align: center;
+			font-weight: bold;
+			font-size: 24px;
+			position: absolute;
+		}
+		.fa {
+			font-size: 32px;
+		}
+		
+		.fa:hover {
+			transform: rotate(360deg);
+			transition: 1s;
+			color: white;
+		}
+		
+		.footerdot {
+			cursor: pointer;
+			height: 15px;
+			width: 15px;
+			margin: 0 2px;
+			background-color: #bbbbbb;
+			border-radius: 50%;
+			display: inline-block;
+			transition: background-color 0.5s ease;
+		}
+		
+		.active,
+		.footerdot:hover {
+			background-color: black;
+		}
+	</style>
+</head>
+
+<body>
+	<center>
+		{% comment %} <h1 style="color:green">
+			Sai Info Solution
+		</h1>
+		
+		<b>
+			 code Image
+			Slider using jQuery
+		</b> {% endcomment %}
+		
+		<br><br>
+	</center>
+	
+	<!-- Image container of the image slider -->
+	<div class="image-container">
+		<div class="slide">
+			<div class="slideNumber">1</div>
+			<!--<img src=
+"C:\\Users\\saiin\\Downloads\\imagesjquery1.jpg">-->
+                        <img src="{% static "image/homepage.jpg" %}">
+		</div>
+		<div class="slide">
+			<div class="slideNumber">2</div>
+                        <img src="{% static "image/blooddonate.jpg" %}"> 
+		</div>
+		<div class="slide">
+			<div class="slideNumber">3</div>
+			<img src="{% static "image/homepage.png" %}">
+		</div>
+
+		<!-- Next and Previous icon to change images -->
+		<a class="previous" onclick="moveSlides(-1)">
+			<i class="fa fa-chevron-circle-left"></i>
+		</a>
+		<a class="next" onclick="moveSlides(1)">
+			<i class="fa fa-chevron-circle-right"></i>
+		</a>
+	</div>
+	<br>
+
+	<div style="text-align:center">
+		<span class="footerdot"
+			onclick="activeSlide(1)">
+		</span>
+		<span class="footerdot"
+			onclick="activeSlide(2)">
+		</span>
+		<span class="footerdot"
+			onclick="activeSlide(3)">
+		</span>
+	</div>
+	
+	<script>
+		var slideIndex = 1;
+		displaySlide(slideIndex);
+
+		function moveSlides(n) {
+			displaySlide(slideIndex += n);
+		}
+
+		function activeSlide(n) {
+			displaySlide(slideIndex = n);
+		}
+
+		/* Main function */
+		function displaySlide(n) {
+			var i;
+			var totalslides =
+				document.getElementsByClassName("slide");
+			
+			var totaldots =
+				document.getElementsByClassName("footerdot");
+			
+			if (n > totalslides.length) {
+				slideIndex = 1;
+			}
+			if (n < 1) {
+				slideIndex = totalslides.length;
+			}
+			for (i = 0; i < totalslides.length; i++) {
+				totalslides[i].style.display = "none";
+			}
+			for (i = 0; i < totaldots.length; i++) {
+				totaldots[i].className =
+				totaldots[i].className.replace(" active", "");
+			}
+			totalslides[slideIndex - 1].style.display = "block";
+			totaldots[slideIndex - 1].className += " active";
+		}
+	</script>
+{% comment %} 
+<head>
+    <style>
+        .xyz{
+          margin-bottom: 0px;
+          background-image: url('{% static "image/homepage.jpg" %}');
+          background-size: cover;
+          background-repeat: no-repeat;
+        }
+      </style>
+      
+</head> {% endcomment %}
+
+
+
+{% include "blood/navbar.html" %}
+
+{% comment %} <br> {% endcomment %}
+{% comment %} <section id="section-jumbotron" style="margin-bottom: 0px;" class="jumbotron jumbotron-fluid d-flex justify-content-center align-items-center xyz">
+    <div class="container text-center"><br></div>  
+  </section>
+  <div class="jumbotron" style="margin-top: 0px;margin-bottom: 0px;">
+
+    <p class="lead text-center">“Opportunities knock the door sometimes, so don’t let it go and donate blood.”
+      </p>
+    
+    {% comment %} <p class="text-center">- LazyCoder</p> {% endcomment %}
+    
+  {% comment %} </div> {% endcomment %}
+
+
+
+
+
+
+<script src="http://maps.google.com/maps/api/js?key=AIzaSyBVCHht3ZqgYA2ObFxr0Ofa21h6EFCuulU" type="text/javascript"></script>
+
+<div id="map" style="height: 800px; width: 800px ;margin: auto;border: 8px groove;">
+
+</div>
+<script type="text/javascript">
+  var locations = [
+   ['Janakalyan Rakt Pedhi (Blood Bank)', 20.0099504, 73.7595417, 15],
+   ['Nashik Blood Bank', 20.006906, 73.758555, 2],
+   ['Samta Blood centre', 20.0065027, 73.7533301, 1],
+   ['Sanjeevani Blood Centre', 19.995919, 73.755074, 4],
+   ['Jeevan Jyoti Blood Bank', 20.019987, 73.778386, 5],
+   ['Metro Blood Bank - District (Civil) Hospital Nashik', 19.995815, 73.804471, 6],
+   ['Arpan Blood Centre', 20.011476, 73.797391, 8],
+   ['Blood bank', 19.990662, 73.775835, 11],
+  ];
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 12,
+      center: new google.maps.LatLng(19.9975, 73.7898),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) { 
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
+  </script> 
+<br><br><br>
+</body>
+{% include "blood/index1.html" %}
+
+
+{% include "blood/footer.html" %}
+
+</html>
+

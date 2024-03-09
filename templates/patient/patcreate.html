@@ -1,0 +1,76 @@
+{% extends 'patient/patientbase.html' %}
+{% block content %}
+{% load widget_tweaks %}
+{%load static%}
+<!--
+developed By : sumit kumar
+facebook : fb.com/sumit.luv
+youtube : youtube.com/lazycoders
+-->
+<head>
+    <style>
+        .label {
+     color: white;
+     padding: 8px;
+   }
+   
+   .success {background-color: #4CAF50;} /* Green */
+   .info {background-color: #2196F3;} /* Blue */
+   .warning {background-color: #ff9800;} /* Orange */
+   .danger {background-color: #f44336;} /* Red */
+   .other {background-color: #e7e7e7; color: black;} /* Gray */
+    </style>
+   </head>
+<br><br>
+<div class="container">
+    {% comment %} <H4 class="text-center">My Blood Request</H4><br> {% endcomment %}
+    <table class="table table-light table-hover table-bordered table-striped">
+        <thead class="bg-info">
+            <tr>
+                {% comment %} <th scope="col">First Name</th> {% endcomment %}
+                {% comment %} <th scope="col">Last Name</th>
+                <th scope="col">Username</th>
+                <th scope="col">Password</th> {% endcomment %}
+                <th scope="col">Age</th>
+                <th scope="col">Blood Group</th>
+                <th scope="col">Disease</th>
+                <th scope="col">Doctor Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Mobile</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for t in Patient %}
+            <tr>
+                {% comment %} <td> {{t.first_name}}</td> {% endcomment %}
+                
+                {% comment %} <td>{{t.last_name}}</td>
+                <td>{{t.Username}}</td>
+                <td>{{t.password}}</td> {% endcomment %}
+                <td>{{t.age}}</td>
+                <td>{{t.bloodgroup}}</td>
+                <td>{{t.disease}}</td>
+                <td>{{t.doctorname}}</td>
+                <td>{{t.address}}</td>
+                <td>{{t.mobile}}</td>
+                {% comment %} {% if t.status == 'Approved' %}mobile {% endcomment %}
+                {% comment %} <td><span class="label warning"> Approved</span></td>
+                
+                {% elif t.status == 'Rejected' %}
+                <td><span class="label success">Rejected</span></td>
+                {% else %}
+                <td><span style="color: white;margin-left: 0px;" class="label info">Pending</span></td>
+                {% endif %} {% endcomment %}
+                
+
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    
+    </table>
+</div>
+
+
+{% endblock content %}
